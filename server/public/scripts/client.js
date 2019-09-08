@@ -4,7 +4,6 @@ $(document).ready(onReady);
 
 let operator = '';
 
-
 function onReady() {
     $( '#additionButton' ).on( 'click', addNumbers ); addNumbers();
     $( '#subtractionButton').on( 'click', subtractNumbers ); subtractNumbers();
@@ -14,7 +13,7 @@ function onReady() {
     $( '#submitButton' ).on( 'click', submitTotal ); submitTotal();
     $( '#clearButton' ).on( 'click', clearInputs ); clearInputs();
 
-    getTotal();
+    // getTotal();
 } 
 
 /// ---> currently set up to write a function off of each of the buttons above,
@@ -22,8 +21,6 @@ function onReady() {
 /// ---> if we did client side logic, it would be like the following:
 
 function addNumbers(){
-    // get user input
-    // package up into an object
     operator = '+';
 }
 
@@ -44,7 +41,7 @@ function divideNumbers() {
 function clearInputs(){
     $('#firstNumber').val(''),
     $('#secondNumber').val('')
-}
+} // end clearInputs
 
 
 // submitTotal to the server
@@ -65,16 +62,17 @@ function submitTotal() {
         // empty number inputs
         $('#submitButton').val(''); 
         appendTotal();
-/// ---> appendCalc might be another function already written?
-    }).catch(function (err) {
-        console.log(err);
-        alert('error with equation. see console for details');
-    }) // end AJAX
+    })
+    
+    // .catch(function (err) {
+    //     console.log(err);
+    //     alert('error with equation. see console for details');
+    // }) // end AJAX
 } // end submitTotal
-    getTotal();
+    // getTotal();
 
 
-function getTotal() {
+function appendTotal() {
     console.log('in getTotal');
     $.ajax({
         type: 'GET',
@@ -82,15 +80,15 @@ function getTotal() {
     }).then(function (response) {
         console.log('back from the GET with:', response);
         // empty ul
-        let el = $('#equationsOut');
+        let el = $('#equationHistoryOut');
         el.empty();
         // loop through response
         for (let i = 0; i < response.equationHistory.length; i++) {
             // append each to the ul
             el.append(response.equationHistory[i]);
         } // end for loop
-    }).catch(function (err) {
-        console.log(err);
+    })
+    .catch(function (err) {
         alert('error getting equation. see console for details.');
     })
 } // end getTotal
