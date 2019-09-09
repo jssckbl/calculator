@@ -1,5 +1,3 @@
-console.log( 'hi from client!' );
-
 $(document).ready(onReady);
 
 let operator = '';
@@ -12,13 +10,7 @@ function onReady() {
 
     $( '#submitButton' ).on( 'click', submitTotal ); submitTotal();
     $( '#clearButton' ).on( 'click', clearInputs ); clearInputs();
-
-    // getTotal();
 } 
-
-/// ---> currently set up to write a function off of each of the buttons above,
-/// ---> but we are supposed to have server side logic, not client side.
-/// ---> if we did client side logic, it would be like the following:
 
 function addNumbers(){
     operator = '+';
@@ -36,13 +28,12 @@ function divideNumbers() {
     operator = '/';
 }
 
-/// $('#submitButton').on('click', submitTotal);
+// $('#submitButton').on('click', submitTotal);
 
 function clearInputs(){
     $('#firstNumber').val(''),
     $('#secondNumber').val('')
 } // end clearInputs
-
 
 // submitTotal to the server
 function submitTotal() {
@@ -57,7 +48,7 @@ function submitTotal() {
         url: '/equations',
         data: totalToSend
     }).then(function (response) {
-        console.log('back from POST:', response);
+        // console.log('back from POST:', response);
         // update DOM with new equations
         // empty number inputs
         $('#submitButton').val(''); 
@@ -71,22 +62,20 @@ function submitTotal() {
 } // end submitTotal
     // getTotal();
 
-
 function appendTotal() {
-    console.log('in getTotal');
+    // console.log('in getTotal');
     $.ajax({
         type: 'GET',
         url: '/equations',
     }).then(function (response) {
-        console.log('back from the GET with:', response);
+        // console.log('back from the GET with:', response);
         // empty ul
-        let el = $('#equationHistoryOut');
-        el.empty();
+        $('ul').empty();
         // loop through response
         for (let i = 0; i < response.equationHistory.length; i++) {
             // append each to the ul
-            el.append(response.equationHistory[i]);
-        } // end for loop
+            $('ul').append(response.equationHistory[i]);
+    } // end for loop
     })
     .catch(function (err) {
         alert('error getting equation. see console for details.');
