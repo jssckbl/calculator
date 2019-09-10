@@ -1,4 +1,10 @@
 body{
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-display: 
 }
 
+.button{
+    text-align: center;
+    font-size: 16px;
+    padding: 15px 32px;    
+}
