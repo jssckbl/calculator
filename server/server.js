@@ -5,7 +5,7 @@ const app = express();
 const bodyParser = require( 'body-parser' );
 
 // globals
-const port = 5000;
+const port = process.env.PORT || 5000;
 
 let globalTotal = 0;
 const equationHistory = [];

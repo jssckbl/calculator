@@ -3,13 +3,15 @@ $(document).ready(onReady);
 let operator = '';
 
 function onReady() {
-    $( '#additionButton' ).on( 'click', addNumbers ); addNumbers();
-    $( '#subtractionButton').on( 'click', subtractNumbers ); subtractNumbers();
-    $( '#multiplicationButton').on( 'click', multiplyNumbers ); multiplyNumbers();
-    $( '#divisionButton').on( 'click', divideNumbers ); divideNumbers();
+    $( '#additionButton' ).on( 'click', addNumbers ); 
+    $( '#subtractionButton').on( 'click', subtractNumbers ); 
+    $( '#multiplicationButton').on( 'click', multiplyNumbers ); 
+    $( '#divisionButton').on( 'click', divideNumbers ); 
 
-    $( '#submitButton' ).on( 'click', submitTotal ); submitTotal();
-    $( '#clearButton' ).on( 'click', clearInputs ); clearInputs();
+    $( '#submitButton' ).on( 'click', submitTotal ); 
+    $( '#clearButton' ).on( 'click', clearInputs ); 
+    
+    appendTotal();
 } 
 
 function addNumbers(){
@@ -55,12 +57,7 @@ function submitTotal() {
         appendTotal();
     })
     
-    // .catch(function (err) {
-    //     console.log(err);
-    //     alert('error with equation. see console for details');
-    // }) // end AJAX
-} // end submitTotal
-    // getTotal();
+}
 
 function appendTotal() {
     // console.log('in getTotal');
@@ -73,6 +70,7 @@ function appendTotal() {
         $('ul').empty();
         // loop through response
         for (let i = 0; i < response.equationHistory.length; i++) {
+  
             // append each to the ul
             $('ul').append(response.equationHistory[i]);
     } // end for loop
