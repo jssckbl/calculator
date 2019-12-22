@@ -37,6 +37,27 @@ function clearInputs(){
     $('#secondNumber').val('')
 } // end clearInputs
 
+function appendTotal() {
+    // console.log('in getTotal');
+    $.ajax({
+        type: 'GET',
+        url: '/equations',
+    }).then(function (response) {
+        // console.log('back from the GET with:', response);
+        // empty ul
+        $('ul').empty();
+        // loop through response
+        for (let i = 0; i < response.equationHistory.length; i++) {
+
+            // append each to the ul
+            $('ul').append(response.equationHistory[i]);
+        } // end for loop
+    })
+        .catch(function (err) {
+            alert('error getting equation. see console for details.');
+        })
+} // end getTotal
+
 // submitTotal to the server
 function submitTotal() {
     let totalToSend = {
@@ -59,24 +80,5 @@ function submitTotal() {
     
 }
 
-function appendTotal() {
-    // console.log('in getTotal');
-    $.ajax({
-        type: 'GET',
-        url: '/equations',
-    }).then(function (response) {
-        // console.log('back from the GET with:', response);
-        // empty ul
-        $('ul').empty();
-        // loop through response
-        for (let i = 0; i < response.equationHistory.length; i++) {
-  
-            // append each to the ul
-            $('ul').append(response.equationHistory[i]);
-    } // end for loop
-    })
-    .catch(function (err) {
-        alert('error getting equation. see console for details.');
-    })
-} // end getTotal
+
 

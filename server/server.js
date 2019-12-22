@@ -15,7 +15,7 @@ app.use( express.static( 'server/public' ) );
 app.use( bodyParser.urlencoded( { extended: true } ) );
 
 // spin up server
-app.listen( port, ()=>{
+app.listen( port, () => {
     console.log( 'server is up:', port );
 }) // end server up
 
